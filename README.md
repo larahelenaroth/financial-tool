@@ -15,9 +15,7 @@ Application for responsive card applications
 
 Dependencies:
 
-- material-ui core
-- material-ui icons
-- axios
+- amex styling
 - react
 - react-dom
 - react-redux
