@@ -1,5 +1,9 @@
 import { GET_CARDS } from '../actions/types';
 
+/* 
+  actions to global state
+*/
+
 const initialState = {
   cards: []
 };

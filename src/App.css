@@ -1,14 +1,17 @@
-body {
-  background: #efefef;
+html,
+body,
+#root {
+  max-width: 100%;
+  /* overflow-x: hidden; */
 }
-p {
+.justify-content-center {
+  justify-content: center;
+}
+.align-items-center {
+  display: flex;
+  align-items: center;
   width: 100%;
-  margin: 0 !important;
 }
-Card {
-  border-radius: 0 !important;
-}
-.ListGroup.Item,
-.ListGroup {
-  padding: 0 !important;
+.container {
+  margin-bottom: 5%;
 }

@@ -1,115 +1,147 @@
 import React, { Fragment } from 'react';
-//CSS
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
+
+/* 
+  Card contents to display the data dynamically inside the Home card container
+    * Header & information
+    * Price / Date
+    * Section 1 & 2:
+      * Header
+      * Price or Number
+      * Link
+    * Footer:
+      * Button
+      * Link
+*/
 
 const CardContent = props => {
   const { content, width } = props;
-  return (
-    <Card
-      style={{ width: width, height: '500px', borderTop: content.borderTop }}
-      className="m-3"
-    >
-      <ListGroup variant="flush" className="d-flex justify-content-center">
-        <ListGroup.Item
-          className="d-flex justify-content-center flex-wrap"
-          style={{ height: '150px' }}
-        >
-          <p className="d-flex justify-content-center align-items-center">
-            {content.heading.heading}
-            <i className="fas fa-info-circle ml-2" />
-          </p>
-          {content.heading.currency !== null ? (
-            <p className="d-flex justify-content-center align-items-center">
-              $
-              {content.heading.currency.toLocaleString(undefined, {
-                minimumFractionDigits: 2
-              })}
-            </p>
-          ) : (
-            <p className="d-flex justify-content-center align-items-center">
-              {content.heading.date}
-            </p>
-          )}
-        </ListGroup.Item>
 
-        <ListGroup.Item
-          style={{ height: '100px' }}
-          className="d-flex justify-content-center flex-wrap"
-        >
-          <p className="d-flex justify-content-center align-items-center">
+  const headingCurrency = content.heading.currency
+    ? content.heading.currency.toFixed(2)
+    : null;
+  return (
+    <div
+      className="dls-gray-02-bg pad flex justify-content-center"
+      style={{ width: width, margin: '5px' }}
+    >
+      <div className="card text-align-center" style={{ minHeight: '500px' }}>
+        {content.borderTop ? (
+          <div className="accent-bar dls-cobrand-default-bg " />
+        ) : null}
+        <div className="pad-responsive-lr pad-3-t pad-b">
+          <h2 className="label-2 dls-gray-05 margin-b flex align-items-center justify-content-center">
+            {content.heading.heading}
+            <div className="tooltip-container" style={{ marginLeft: '5px' }}>
+              <button
+                data-attach-tooltip
+                aria-labelledby="info-1-card"
+                className="btn-tooltip glyph glyph-lg"
+              />
+            </div>
+          </h2>
+          {headingCurrency ? (
+            <h2 className="heading-6">
+              ${Math.trunc(headingCurrency)}
+              <sup>.{headingCurrency.toString().split('.')[1]}</sup>
+            </h2>
+          ) : (
+            <h2 className="heading-6">{content.heading.date}</h2>
+          )}
+        </div>
+        <hr />
+        <div className="pad pad-responsive-lr" style={{ minHeight: '100px' }}>
+          <h2 className="label-2 dls-gray-05  flex align-items-center justify-content-center">
             {content.mid.heading}
             {content.mid.info ? (
-              <i className="fas fa-info-circle ml-2" />
+              <div
+                className="tooltip-container"
+                data-toggle="tooltip"
+                style={{ marginLeft: '5px' }}
+              >
+                <button
+                  data-attach-tooltip
+                  aria-labelledby="info-2-card"
+                  className="btn-tooltip glyph glyph-lg"
+                />
+              </div>
             ) : null}
-          </p>
-          <p className="d-flex justify-content-center align-items-center">
-            {content.mid.currency !== null ? (
-              <span>
-                $
-                {content.mid.currency.toLocaleString(undefined, {
-                  minimumFractionDigits: 2
-                })}
-              </span>
-            ) : (
-              content.mid.text
-            )}
-            {content.mid.link !== null ? (
-              <span className="ml-2" style={{ color: content.color }}>
-                {content.mid.link}
-              </span>
-            ) : null}
-          </p>
-        </ListGroup.Item>
-        {content.second.heading !== null ? (
-          <ListGroup.Item
-            style={{ height: '100px' }}
-            className="d-flex justify-content-center flex-wrap"
-          >
-            <p className="d-flex justify-content-center align-items-center">
-              {content.second.heading}
-              {content.second.info ? (
-                <i className="fas fa-info-circle ml-2" />
+          </h2>
+          {content.mid.currency ? (
+            <p className="body-1">
+              ${content.mid.currency.toFixed(2)}
+              {content.mid.link ? (
+                <p style={{ color: content.color, marginLeft: '5px' }}>
+                  {content.mid.link}
+                </p>
               ) : null}
             </p>
-            <p className="d-flex justify-content-center align-items-center">
-              {content.second.currency !== null ? (
-                <span>
-                  $
-                  {content.second.currency.toLocaleString(undefined, {
-                    minimumFractionDigits: 2
-                  })}
-                </span>
+          ) : (
+            <p className="body-1">{content.mid.text}</p>
+          )}
+        </div>
+        {content.second.heading ? (
+          <Fragment>
+            <hr />
+            <div
+              className="pad pad-responsive-lr"
+              style={{ minHeight: '100px' }}
+            >
+              <h2 className="label-2 dls-gray-05 flex align-items-center justify-content-center">
+                {content.second.heading}
+                {content.second.info ? (
+                  <div
+                    className="tooltip-container"
+                    data-toggle="tooltip"
+                    style={{ marginLeft: '5px' }}
+                  >
+                    <button
+                      data-attach-tooltip
+                      aria-labelledby="info-3-card"
+                      className="btn-tooltip glyph glyph-lg"
+                    />
+                  </div>
+                ) : null}
+              </h2>
+              {content.second.currency ? (
+                <p className="body-1">
+                  ${content.second.currency.toFixed(2)}
+                  {content.second.link ? (
+                    <p style={{ color: content.color, marginLeft: '5px' }}>
+                      {content.second.link}
+                    </p>
+                  ) : null}
+                </p>
               ) : (
-                content.second.text
+                <p className="body-1">{content.mid.text}</p>
               )}
-              {content.second.link !== null ? content.second.link : null}
-            </p>
-          </ListGroup.Item>
+            </div>
+            <hr />
+          </Fragment>
         ) : (
-          <div style={{ height: '100px' }} />
+          <div
+            className="pad pad-responsive-lr"
+            style={{ minHeight: '100px' }}
+          />
         )}
 
-        <ListGroup.Item
-          style={{ height: '150px' }}
-          className="d-flex justify-content-center flex-wrap "
-        >
-          <p className="d-flex justify-content-center align-items-center">
-            <Button style={{ background: content.color }}>
-              {content.footer.button}
-            </Button>
+        <div className="pad-responsive">
+          <p
+            className="btn btn-block margin-auto-lr"
+            style={{ background: content.color }}
+          >
+            {content.footer.button}
           </p>
-          <p className="d-flex justify-content-center align-items-center">
-            {content.footer.link !== null ? (
-              <span style={{ color: content.color }}>
+
+          {content.footer.link ? (
+            <div className="pad-responsive">
+              <p className="margin-auto-lr" style={{ color: content.color }}>
                 {content.footer.link}
-              </span>
-            ) : null}
-          </p>
-        </ListGroup.Item>
-      </ListGroup>
-    </Card>
+              </p>
+            </div>
+          ) : null}
+        </div>
+      </div>
+    </div>
   );
 };
 

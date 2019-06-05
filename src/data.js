@@ -1,9 +1,10 @@
+/* Card Information */
 export default {
   cards: [
     {
       id: 1,
       borderTop: null,
-      color: 'blue',
+      color: '#006FCF',
       heading: {
         heading: 'Statement Balance',
         currency: 332.0,
@@ -31,11 +32,11 @@ export default {
     {
       id: 2,
       borderTop: null,
-      color: 'blue',
+      color: '#006FCF',
       heading: {
         heading: 'Payment is Due in 2 Days on',
         currency: null,
-        date: Date('2019-07-28')
+        date: 'July 28'
       },
       mid: {
         heading: 'Minimum Payment Due',
@@ -58,8 +59,8 @@ export default {
     },
     {
       id: 3,
-      borderTop: '3px solid green',
-      color: 'green',
+      borderTop: 'dls-cobrand-default-bg',
+      color: '#43A34C',
       heading: {
         heading: 'Reward Dollars',
         currency: 37.01,

@@ -7,17 +7,23 @@ import { Provider } from 'react-redux';
 import Header from './components/layout/Header';
 import NotFound from './components/pages/NotFound';
 import Home from './components/pages/Home';
-//CSS
+import About from './components/pages/About';
+// CSS
 import './App.css';
+
+/* 
+  Combine redux store, react, routes
+*/
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
         <Header branding="AM" />
-        <div className="container mb-4" style={{ marginTop: '75px' }}>
+        <div className="container">
           <Switch>
             <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
             <Route component={NotFound} />
           </Switch>
         </div>
@@ -27,3 +33,4 @@ function App() {
 }
 
 export default App;
+/*  */
